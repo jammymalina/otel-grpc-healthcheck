@@ -16,7 +16,7 @@ const (
 
 const (
 	defaultEndpoint               = "0.0.0.0:13134"
-	defaultHealtcheckHttpEndpoint = "localhost:13133"
+	defaultHealtcheckHttpEndpoint = "http://localhost:13133"
 )
 
 func NewFactory() extension.Factory {

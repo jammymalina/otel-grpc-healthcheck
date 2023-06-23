@@ -53,8 +53,10 @@ func (gc *grpcHealthCheckExtension) Start(_ context.Context, host component.Host
 			status := healthpb.HealthCheckResponse_SERVING
 			response, err := client.Get(gc.config.HealthCheckHttpEndpoint)
 			if err != nil {
+				gc.logger.Error("Failed to get health check status", zap.Error(err))
 				status = healthpb.HealthCheckResponse_NOT_SERVING
 			} else if response.StatusCode < 200 || response.StatusCode >= 300 {
+				gc.logger.Error("Service seems to be unhealthy", zap.Int("code", response.StatusCode))
 				status = healthpb.HealthCheckResponse_NOT_SERVING
 			}
 			hs.SetServingStatus("", status)
