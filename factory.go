@@ -5,6 +5,7 @@ import (
 
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/configgrpc"
+	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/extension"
 )
 
@@ -29,10 +30,12 @@ func NewFactory() extension.Factory {
 
 func createDefaultConfig() component.Config {
 	cfg := &Config{
-		Grpc:                    configgrpc.GRPCServerSettings{},
+		Grpc: configgrpc.GRPCServerSettings{NetAddr: confignet.NetAddr{
+			Endpoint:  defaultEndpoint,
+			Transport: "tcp",
+		}},
 		HealthCheckHttpEndpoint: defaultHealtcheckHttpEndpoint,
 	}
-	cfg.Grpc.NetAddr.Endpoint = defaultEndpoint
 	return cfg
 }
 
