@@ -49,6 +49,8 @@ func (gc *grpcHealthCheckExtension) Start(_ context.Context, host component.Host
 	reflection.Register(gc.server)
 
 	go func() {
+		time.Sleep(gc.config.StartPeriod)
+
 		for {
 			status := healthpb.HealthCheckResponse_SERVING
 			response, err := client.Get(gc.config.HealthCheckHttpEndpoint)
@@ -61,7 +63,7 @@ func (gc *grpcHealthCheckExtension) Start(_ context.Context, host component.Host
 			}
 			hs.SetServingStatus("", status)
 
-			time.Sleep(5 * time.Second)
+			time.Sleep(gc.config.Interval)
 		}
 	}()
 
