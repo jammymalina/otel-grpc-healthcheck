@@ -36,7 +36,7 @@ func (gc *grpcHealthCheckExtension) Start(_ context.Context, host component.Host
 		return fmt.Errorf("failed to bind to address %s: %w", gc.config.Grpc.NetAddr.Endpoint, err)
 	}
 
-	gc.server, err = gc.config.Grpc.ToServer(host, gc.settings, nil)
+	gc.server, err = gc.config.Grpc.ToServer(host, gc.settings)
 	if err != nil {
 		return err
 	}
