@@ -23,3 +23,10 @@ const argv = yargs(hideBin(process.argv))
 
 const goModTemplateData = await fs.readFile("./go.mod.ejs")
 const goModTemplate = ejs.compile(goModTemplateData)
+
+const goModData = await goModTemplate({
+  goVersion: argv.goVersion,
+  version: argv.version,
+})
+
+await fs.writeFile("./go.mod", goModData)
