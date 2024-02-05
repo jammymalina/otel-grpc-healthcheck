@@ -11,11 +11,13 @@ const argv = yargs(hideBin(process.argv))
       alias: "o",
       describe: "provide an otel version",
       demandOption: true,
+      type: "string",
     },
     goVersion: {
       alias: "g",
       describe: "provide a go version",
       demandOption: true,
+      type: "string",
     },
   })
   .help()

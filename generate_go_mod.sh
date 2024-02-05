@@ -8,7 +8,7 @@ go_version=$2
 go clean -modcache
 
 rm -f go.mod go.sum
-./generate.js -o ${version} -g ${go_version}
+./generate.js -o "${version}" -g "${go_version}"
 
 go get ./...
 go mod tidy
