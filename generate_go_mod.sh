@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 version=$1
 go_version=$2
 
-git_switch = "!f() { git switch $1 2>/dev/null || git switch -c $1; }; f"
+rm -f go.mod go.sum
+./generate.js -o ${version} -g ${go_version}
 
-# git_switch gen-v${version}
-
-rm go.mod go.sum
-./generate -v ${version} -g ${go_version}
-
-go mod download
+go get ./...
+go mod tidy
+go vet ./...
 go build
