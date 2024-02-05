@@ -1,5 +1,6 @@
 module github.com/jammymalina/otel-grpc-healthcheck
 
+<<<<<<< Updated upstream
 go 1.20
 
 require go.opentelemetry.io/collector/component v0.80.0
@@ -48,4 +49,15 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230530153820-e85fd2cbaebc // indirect
 	google.golang.org/grpc v1.56.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
+=======
+go 1.2
+
+require (
+	go.opentelemetry.io/collector/component v0.93.0
+	go.opentelemetry.io/collector/config/configgrpc v0.93.0
+	go.opentelemetry.io/collector/config/confignet v0.93.0
+	go.opentelemetry.io/collector/extension v0.93.0
+	go.uber.org/zap v1.26.0
+	google.golang.org/grpc v1.60.1
+>>>>>>> Stashed changes
 )
