@@ -33,7 +33,7 @@ func NewFactory() extension.Factory {
 
 func createDefaultConfig() component.Config {
 	cfg := &Config{
-		Grpc: configgrpc.GRPCServerSettings{NetAddr: confignet.NetAddr{
+		Grpc: configgrpc.ServerConfig{NetAddr: confignet.AddrConfig{
 			Endpoint:  defaultEndpoint,
 			Transport: "tcp",
 		}},

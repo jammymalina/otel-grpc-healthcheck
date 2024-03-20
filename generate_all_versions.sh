@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-versions=("0.93.0")
+versions=("0.96.0")
 
 for v in ${versions[@]}; do
   git switch generate-otel-version

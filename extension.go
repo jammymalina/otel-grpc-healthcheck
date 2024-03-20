@@ -29,16 +29,18 @@ type grpcHealthCheckExtension struct {
 	settings component.TelemetrySettings
 }
 
-func (gc *grpcHealthCheckExtension) Start(_ context.Context, host component.Host) error {
+func (gc *grpcHealthCheckExtension) Start(ctx context.Context, host component.Host) error {
 	gc.logger.Info("Starting grpc_health_check extension", zap.Any("config", gc.config))
-	ln, err := gc.config.Grpc.ToListener()
-	if err != nil {
-		return fmt.Errorf("failed to bind to address %s: %w", gc.config.Grpc.NetAddr.Endpoint, err)
-	}
 
-	gc.server, err = gc.config.Grpc.ToServer(host, gc.settings)
+	server, err := gc.config.Grpc.ToServerContext(ctx, host, gc.settings)
 	if err != nil {
 		return err
+	}
+	gc.server = server
+
+	ln, err := gc.config.Grpc.NetAddr.Listen(ctx)
+	if err != nil {
+		return fmt.Errorf("failed to bind to address %s: %w", gc.config.Grpc.NetAddr.Endpoint, err)
 	}
 
 	gc.stopCh = make(chan struct{})
@@ -71,8 +73,8 @@ func (gc *grpcHealthCheckExtension) Start(_ context.Context, host component.Host
 		defer close(gc.stopCh)
 
 		// The listener ownership goes to the server.
-		if err = gc.server.Serve(ln); !errors.Is(err, http.ErrServerClosed) && err != nil {
-			host.ReportFatalError(err)
+		if err = gc.server.Serve(ln); !errors.Is(err, grpc.ErrServerStopped) && err != nil {
+			gc.settings.ReportStatus(component.NewFatalErrorEvent(err))
 		}
 	}()
 
