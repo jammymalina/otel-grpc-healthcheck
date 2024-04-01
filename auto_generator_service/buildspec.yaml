@@ -1,0 +1,22 @@
+version: 0.2
+
+env:
+  parameter-store:
+    BUILD_SSH_KEY: "/otel-grpc-healthcheck/private_deploy_key"
+
+phases:
+  install:
+    commands:
+      - mkdir -p ~/.ssh
+      - echo "${BUILD_SSH_KEY}" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - eval "$(ssh-agent)"
+  pre_build:
+    commands:
+      - git clone --branch "generate-otel-version" "git@github.com:jammymalina/otel-grpc-healthcheck.git" .
+      - npm install
+  build:
+    commands:
+      - echo "DONE"
+      # - ./generate_new_version "${VERSION}"

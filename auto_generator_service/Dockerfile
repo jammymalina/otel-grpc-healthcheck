@@ -1,5 +1,5 @@
 FROM alpine:3.19
-RUN apk add nodejs npm go
+RUN apk go openssh git
 ENTRYPOINT []
 CMD []
 
