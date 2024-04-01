@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"os"
 	"text/template"
 )
@@ -20,8 +19,7 @@ func main() {
 	flag.Parse()
 
 	if otelVersion == "" {
-		fmt.Println("OpenTelemetry version must be specified")
-		os.Exit(2)
+		panic("OpenTelemetry version must be specified")
 	}
 
 	data := templateData{
@@ -34,7 +32,14 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = tmpl.Execute(os.Stdout, data)
+
+	goModFile, err := os.Create("go.mod")
+	if err != nil {
+		panic(err)
+	}
+	defer goModFile.Close()
+
+	err = tmpl.Execute(goModFile, data)
 	if err != nil {
 		panic(err)
 	}
