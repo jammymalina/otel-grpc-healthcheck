@@ -15,7 +15,6 @@ phases:
   pre_build:
     commands:
       - git clone --branch "generate-otel-version" "git@github.com:jammymalina/otel-grpc-healthcheck.git" .
-      - npm install
   build:
     commands:
       - echo "DONE"
