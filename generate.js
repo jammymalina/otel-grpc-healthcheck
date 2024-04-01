@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require("fs/promises");
-const ejs = require("ejs");
-const yargs = require("yargs/yargs");
-const { hideBin } = require("yargs/helpers");
+import * as fs from "node:fs/promises";
+import { compile as ejsCompile } from "ejs";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 const argv = yargs(hideBin(process.argv))
   .options({
@@ -25,9 +25,9 @@ const argv = yargs(hideBin(process.argv))
 
 (async (argv) => {
   const goModTemplateData = (await fs.readFile("./go.mod.ejs")).toString("utf8");
-  const goModTemplate = ejs.compile(goModTemplateData);
+  const goModTemplate = ejsCompile(goModTemplateData);
 
-  const goModData = await goModTemplate({
+  const goModData = goModTemplate({
     goVersion: argv.goVersion,
     otelVersion: argv.otelVersion,
   });

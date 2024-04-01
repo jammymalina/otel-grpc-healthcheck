@@ -7,6 +7,7 @@
     "prebuild": "rm -rf dist",
     "build": "esbuild src/handler.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/handler.js",
     "postbuild": "zip -r -j dist/handler.zip dist/handler.js*",
+    "deploy": "npm run build && terraform init && terraform apply",
     "lint": "eslint --ext .ts src/"
   },
   "keywords": [],

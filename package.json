@@ -2,6 +2,7 @@
   "name": "otel-grpc-healthcheck",
   "version": "1.0.0",
   "main": "generate.js",
+  "type": "module",
   "author": "Jakub Jantosik",
   "license": "MIT",
   "dependencies": {

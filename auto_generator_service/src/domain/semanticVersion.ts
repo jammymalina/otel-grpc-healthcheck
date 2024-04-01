@@ -5,12 +5,12 @@ export default class SemanticVersion {
     public readonly patch: number
   ) {}
 
-  static initFromVersionString(versionString: string): SemanticVersion | null {
+  static initFromVersionString(versionString: string): SemanticVersion {
     const regex = /v?(\d+)\.(\d+)\.(\d+)/;
     const match = regex.exec(versionString);
 
     if (!match) {
-      return null;
+      return new SemanticVersion(0, 0, 0);
     }
 
     return new SemanticVersion(parseInt(match[1], 10), parseInt(match[2], 10), parseInt(match[3], 10));
@@ -24,5 +24,9 @@ export default class SemanticVersion {
       return this.minor - otherVersion.minor;
     }
     return this.patch - otherVersion.patch;
+  }
+
+  isZero(): boolean {
+    return this.major === 0 && this.minor === 0 && this.patch === 0;
   }
 }
