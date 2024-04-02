@@ -15,8 +15,8 @@ enum LambdaResponse {
 
 const handler = async (): Promise<LambdaResponse> => {
   const [otelTags, healthTags] = await Promise.all([
-    await githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector-contrib"),
-    await githubService.getRepositoryTags("jammymalina", "otel-grpc-healthcheck"),
+    githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector-contrib"),
+    githubService.getRepositoryTags("jammymalina", "otel-grpc-healthcheck"),
   ]);
 
   if (otelTags.length === 0 || healthTags.length === 0) {
