@@ -72,6 +72,11 @@ data "aws_iam_policy_document" "trigger_policy" {
     ]
     resources = ["arn:aws:logs:*:*:*"]
   }
+
+  statement {
+    actions   = ["codebuild:StartBuild"]
+    resources = [aws_codebuild_project.build.arn]
+  }
 }
 
 resource "aws_iam_role" "trigger_lambda" {
@@ -95,6 +100,12 @@ resource "aws_lambda_function" "trigger" {
 
   filename = local.dist_trigger_lambda
   runtime  = "nodejs20.x"
+
+  environment {
+    variables = {
+      PROJECT_NAME = aws_codebuild_project.build.name
+    }
+  }
 }
 
 resource "aws_ecr_repository" "build" {

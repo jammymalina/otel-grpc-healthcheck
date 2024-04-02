@@ -17,5 +17,6 @@ phases:
       - git clone --branch "generate-otel-version" "git@github.com:jammymalina/otel-grpc-healthcheck.git" .
   build:
     commands:
-      - echo "DONE"
-      # - ./generate_new_version "${VERSION}"
+      - test -n "${VERSION}"
+      - ./generate_new_version.sh "${VERSION}"
+      - echo "New version was generated and pushed to the repository"

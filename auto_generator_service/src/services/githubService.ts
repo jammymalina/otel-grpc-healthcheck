@@ -13,7 +13,7 @@ export default class GithubService {
 
   async getRepositoryTags(owner: string, repo: string): Promise<RepositoryVersionTag[]> {
     const response = await this.octokit.rest.repos.listTags({ owner, repo, per_page: 10 });
-    logger.info("Received response from list tags octo API", response);
+    logger.info("Received response from list tags octo API", { details: { response } });
 
     const allowedStatusCodes = [200, 204];
 

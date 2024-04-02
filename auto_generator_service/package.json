@@ -5,7 +5,7 @@
   "main": "handler.ts",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "esbuild src/handler.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/handler.js",
+    "build": "esbuild src/handler.ts --bundle --external:@aws-sdk/* --minify --sourcemap --platform=node --target=es2020 --outfile=dist/handler.js",
     "postbuild": "zip -r -j dist/handler.zip dist/handler.js*",
     "deploy": "npm run build && terraform init && terraform apply",
     "lint": "eslint --ext .ts src/"
@@ -15,6 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/aws-lambda": "8.10.136",
+    "@types/node": "20.12.3",
     "@typescript-eslint/eslint-plugin": "7.4.0",
     "@typescript-eslint/parser": "7.4.0",
     "esbuild": "0.20.2",
@@ -42,7 +43,8 @@
     }
   },
   "dependencies": {
-    "@octokit/rest": "^20.0.2",
+    "@aws-sdk/client-codebuild": "3.545.0",
+    "@octokit/rest": "20.0.2",
     "winston": "3.13.0"
   }
 }

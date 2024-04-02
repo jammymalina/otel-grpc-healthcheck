@@ -16,6 +16,14 @@ export default class SemanticVersion {
     return new SemanticVersion(parseInt(match[1], 10), parseInt(match[2], 10), parseInt(match[3], 10));
   }
 
+  toString(): string {
+    return `${this.major}.${this.minor}.${this.patch}`;
+  }
+
+  equals(otherVersion: SemanticVersion): boolean {
+    return this.compare(otherVersion) === 0;
+  }
+
   compare(otherVersion: SemanticVersion): number {
     if (this.major !== otherVersion.major) {
       return this.major - otherVersion.major;
