@@ -106,6 +106,25 @@ resource "aws_lambda_function" "trigger" {
   }
 }
 
+resource "aws_cloudwatch_event_rule" "every_day" {
+  name                = "${local.service_name}-every-day-lambda-trigger"
+  schedule_expression = "cron(0 12 * * ? *)"
+}
+
+resource "aws_cloudwatch_event_target" "lambda_target" {
+  rule      = aws_cloudwatch_event_rule.every_day.name
+  target_id = "TriggerLambda"
+  arn       = aws_lambda_function.trigger.arn
+}
+
+resource "aws_lambda_permission" "allow_eventbridge" {
+  statement_id  = "AllowExecutionFromEventBridge"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.trigger.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.every_day.arn
+}
+
 resource "aws_ecr_repository" "build" {
   name                 = "${local.service_name}-build"
   image_tag_mutability = "MUTABLE"
