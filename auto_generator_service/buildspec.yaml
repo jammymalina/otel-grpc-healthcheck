@@ -3,6 +3,8 @@ version: 0.2
 env:
   parameter-store:
     BUILD_SSH_KEY: "/otel-grpc-healthcheck/private_deploy_key"
+    GIT_EMAIL: "/otel-grpc-healthcheck/git_email"
+    GIT_USERNAME: "/otel-grpc-healthcheck/git_username"
 
 phases:
   install:
@@ -15,6 +17,8 @@ phases:
   pre_build:
     commands:
       - git clone --branch "generate-otel-version" "git@github.com:jammymalina/otel-grpc-healthcheck.git" .
+      - git config --global user.email "${GIT_EMAIL}"
+      - git config --global user.name "${GIT_USERNAME}"
   build:
     commands:
       - test -n "${VERSION}"

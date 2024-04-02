@@ -27,16 +27,14 @@ provider "aws" {
 
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
-
-data "aws_ssm_parameter" "deploy_key" {
-  name = "/otel-grpc-healthcheck/private_deploy_key"
-}
+data "aws_partition" "current" {}
 
 locals {
   service_name = "otel-package-updater"
 
-  account_id = data.aws_caller_identity.current.account_id
-  region     = data.aws_region.current.name
+  account_id    = data.aws_caller_identity.current.account_id
+  region        = data.aws_region.current.name
+  aws_partition = data.aws_partition.current.partition
 
   log_retention_days = 7
 
@@ -202,7 +200,7 @@ data "aws_iam_policy_document" "build_policy" {
 
   statement {
     actions   = ["ssm:GetParameter*"]
-    resources = [data.aws_ssm_parameter.deploy_key.arn]
+    resources = ["arn:${local.aws_partition}:ssm:${local.region}:${local.account_id}:parameter/otel-grpc-healthcheck/*"]
   }
 }
 
