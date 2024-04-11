@@ -32,7 +32,7 @@ type grpcHealthCheckExtension struct {
 func (gc *grpcHealthCheckExtension) Start(ctx context.Context, host component.Host) error {
 	gc.logger.Info("Starting grpc_health_check extension", zap.Any("config", gc.config))
 
-	server, err := gc.config.Grpc.ToServerContext(ctx, host, gc.settings)
+	server, err := gc.config.Grpc.ToServer(ctx, host, gc.settings)
 	if err != nil {
 		return err
 	}
