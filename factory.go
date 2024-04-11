@@ -10,8 +10,8 @@ import (
 	"go.opentelemetry.io/collector/extension"
 )
 
-const (
-	Type               = "grpc_health_check"
+var (
+	Type               = component.MustNewType("grpc_health_check")
 	ExtensionStability = component.StabilityLevelBeta
 )
 
