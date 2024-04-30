@@ -5,12 +5,6 @@ terraform {
       version = "5.43.0"
     }
   }
-
-  backend "s3" {
-    bucket = "infrastructure-terraform-bucket-ywnlj"
-    key    = "otel-package-updater"
-    region = "eu-west-1"
-  }
 }
 
 provider "aws" {
