@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/component/componentstatus"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
@@ -74,7 +75,7 @@ func (gc *grpcHealthCheckExtension) Start(ctx context.Context, host component.Ho
 
 		// The listener ownership goes to the server.
 		if err = gc.server.Serve(ln); !errors.Is(err, grpc.ErrServerStopped) && err != nil {
-			gc.settings.ReportStatus(component.NewFatalErrorEvent(err))
+			componentstatus.ReportStatus(host, componentstatus.NewFatalErrorEvent(err))
 		}
 	}()
 
