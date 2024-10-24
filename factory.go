@@ -44,8 +44,8 @@ func createDefaultConfig() component.Config {
 	return cfg
 }
 
-func createExtension(_ context.Context, set extension.CreateSettings, cfg component.Config) (extension.Extension, error) {
+func createExtension(_ context.Context, params extension.Settings, cfg component.Config) (extension.Extension, error) {
 	config := cfg.(*Config)
 
-	return newServer(*config, set.TelemetrySettings), nil
+	return newServer(*config, params.TelemetrySettings), nil
 }
