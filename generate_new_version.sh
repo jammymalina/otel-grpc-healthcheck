@@ -4,7 +4,7 @@ set -euxo pipefail
 
 v=$1
 
-./generate_go_mod.sh ${v} "1.20"
+./generate_go_mod.sh ${v} "1.23"
 
 mv go.mod go.mod.new
 mv go.sum go.sum.new
