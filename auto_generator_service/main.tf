@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "otel-health-plugin-infra-dev"
-    key    = "otel-package-updater"
+    key    = "otel-package-updater.tfstate"
     region = "eu-west-1"
   }
 }
