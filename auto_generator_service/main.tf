@@ -5,6 +5,12 @@ terraform {
       version = "5.43.0"
     }
   }
+
+  backend "s3" {
+    bucket = "otel-health-plugin-infra-dev"
+    key    = "otel-package-updater"
+    region = "eu-west-1"
+  }
 }
 
 provider "aws" {
