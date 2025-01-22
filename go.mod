@@ -3,13 +3,13 @@ module github.com/jammymalina/otel-grpc-healthcheck
 go 1.23
 
 require (
-	go.opentelemetry.io/collector/component v0.117.0
-	go.opentelemetry.io/collector/component/componentstatus v0.117.0
-	go.opentelemetry.io/collector/config/configgrpc v0.117.0
-	go.opentelemetry.io/collector/config/confignet v1.23.0
-	go.opentelemetry.io/collector/extension v0.117.0
+	go.opentelemetry.io/collector/component v0.118.0
+	go.opentelemetry.io/collector/component/componentstatus v0.118.0
+	go.opentelemetry.io/collector/config/configgrpc v0.118.0
+	go.opentelemetry.io/collector/config/confignet v1.24.0
+	go.opentelemetry.io/collector/extension v0.118.0
 	go.uber.org/zap v1.27.0
-	google.golang.org/grpc v1.69.2
+	google.golang.org/grpc v1.69.4
 )
 
 require (
@@ -20,15 +20,15 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
 	github.com/mostynb/go-grpc-compression v1.2.3 // indirect
-	go.opentelemetry.io/collector/client v1.23.0 // indirect
-	go.opentelemetry.io/collector/config/configauth v0.117.0 // indirect
-	go.opentelemetry.io/collector/config/configcompression v1.23.0 // indirect
-	go.opentelemetry.io/collector/config/configopaque v1.23.0 // indirect
-	go.opentelemetry.io/collector/config/configtelemetry v0.117.0 // indirect
-	go.opentelemetry.io/collector/config/configtls v1.23.0 // indirect
-	go.opentelemetry.io/collector/extension/auth v0.117.0 // indirect
-	go.opentelemetry.io/collector/pdata v1.23.0 // indirect
-	go.opentelemetry.io/collector/pipeline v0.117.0 // indirect
+	go.opentelemetry.io/collector/client v1.24.0 // indirect
+	go.opentelemetry.io/collector/config/configauth v0.118.0 // indirect
+	go.opentelemetry.io/collector/config/configcompression v1.24.0 // indirect
+	go.opentelemetry.io/collector/config/configopaque v1.24.0 // indirect
+	go.opentelemetry.io/collector/config/configtelemetry v0.118.0 // indirect
+	go.opentelemetry.io/collector/config/configtls v1.24.0 // indirect
+	go.opentelemetry.io/collector/extension/auth v0.118.0 // indirect
+	go.opentelemetry.io/collector/pdata v1.24.0 // indirect
+	go.opentelemetry.io/collector/pipeline v0.118.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.56.0 // indirect
 	go.opentelemetry.io/otel v1.32.0 // indirect
 	go.opentelemetry.io/otel/metric v1.32.0 // indirect
