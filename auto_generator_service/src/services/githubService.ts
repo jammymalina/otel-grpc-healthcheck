@@ -28,7 +28,7 @@ export default class GithubService {
   async getRepositoryTags(owner: string, repo: string, prefix?: string): Promise<RepositoryVersionTag[]> {
     await this.authenticate();
     if (this.octokit == null) {
-      logger.warning("Unable to authenticate continuing with unauthenticated client");
+      logger.warning("Unable to authenticate, continuing with unauthenticated client");
       this.octokit = new Octokit();
     }
 
