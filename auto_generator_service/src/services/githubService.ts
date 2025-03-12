@@ -3,6 +3,7 @@ import { Octokit } from "@octokit/rest";
 import logger from "../utils/logger";
 import RepositoryVersionTag from "../domain/repositoryVersionTag";
 import SemanticVersion from "../domain/semanticVersion";
+import SecretService from "./secretService";
 
 interface Tag {
   name: string;
@@ -16,13 +17,21 @@ interface Tag {
 }
 
 export default class GithubService {
-  private readonly octokit: Octokit;
+  private octokit: Octokit | null;
+  private readonly secretService: SecretService;
 
   constructor() {
-    this.octokit = new Octokit();
+    this.octokit = null;
+    this.secretService = new SecretService();
   }
 
   async getRepositoryTags(owner: string, repo: string, prefix?: string): Promise<RepositoryVersionTag[]> {
+    await this.authenticate();
+    if (this.octokit == null) {
+      logger.warning("Unable to authenticate continuing with unauthenticated client");
+      this.octokit = new Octokit();
+    }
+
     const listedTags = []
     let pageIndex = 1;
 
@@ -57,5 +66,16 @@ export default class GithubService {
 
     tags.sort((a: RepositoryVersionTag, b: RepositoryVersionTag) => a.version.compare(b.version));
     return tags;
+  }
+
+  private async authenticate(): Promise<void> {
+    if (this.octokit != null) {
+      return;
+    }
+
+    const personalToken = await this.secretService.getSecret("/otel-grpc-healthcheck/git_token");
+    this.octokit = new Octokit({
+      auth: personalToken,
+    });
   }
 }

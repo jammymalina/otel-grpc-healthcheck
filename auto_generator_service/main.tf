@@ -72,6 +72,11 @@ data "aws_iam_policy_document" "trigger_policy" {
   }
 
   statement {
+    actions   = ["ssm:GetParameter*"]
+    resources = ["arn:${local.aws_partition}:ssm:${local.region}:${local.account_id}:parameter/otel-grpc-healthcheck/*"]
+  }
+
+  statement {
     actions   = ["codebuild:StartBuild"]
     resources = [aws_codebuild_project.build.arn]
   }
