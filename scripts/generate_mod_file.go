@@ -12,6 +12,24 @@ type templateData struct {
 	ComponentVersion string
 }
 
+func generateFileFromTemplate(tmplFile, targetFile string, data templateData) {
+	tmpl, err := template.New(tmplFile).ParseFiles(tmplFile)
+	if err != nil {
+		panic(err)
+	}
+
+	tf, err := os.Create(targetFile)
+	if err != nil {
+		panic(err)
+	}
+	defer tf.Close()
+
+	err = tmpl.Execute(tf, data)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func main() {
 	var otelVersion, goVersion, componentVersion string
 	flag.StringVar(&otelVersion, "otelversion", "", "OpenTelemetry version")
@@ -30,20 +48,6 @@ func main() {
 		ComponentVersion: componentVersion,
 	}
 
-	tmplFile := "go.mod.tmpl"
-	tmpl, err := template.New(tmplFile).ParseFiles(tmplFile)
-	if err != nil {
-		panic(err)
-	}
-
-	goModFile, err := os.Create("go.mod")
-	if err != nil {
-		panic(err)
-	}
-	defer goModFile.Close()
-
-	err = tmpl.Execute(goModFile, data)
-	if err != nil {
-		panic(err)
-	}
+	generateFileFromTemplate("go.mod.tmpl", "go.mod", data)
+	generateFileFromTemplate("readme.tmpl", "README.md", data)
 }

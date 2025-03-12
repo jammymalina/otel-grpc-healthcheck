@@ -31,11 +31,11 @@ receivers:
   - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.112.0
 
 providers:
-  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.18.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.18.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.18.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.18.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.18.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v{{ .ComponentVersion }}
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v{{ .ComponentVersion }}
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v{{ .ComponentVersion }}
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v{{ .ComponentVersion }}
+  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v{{ .ComponentVersion }}
 ```
 
 ## The OpenTelemetry Collector Configuration
