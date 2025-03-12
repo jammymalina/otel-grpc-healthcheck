@@ -17,7 +17,7 @@ const handler = async (): Promise<LambdaResponse> => {
   const [otelTags, healthTags, componentTags] = await Promise.all([
     githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector-contrib"),
     githubService.getRepositoryTags("jammymalina", "otel-grpc-healthcheck"),
-    githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector")
+    githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector", "component/")
   ]);
 
   if (otelTags.length === 0 || healthTags.length === 0 || componentTags.length === 0) {
