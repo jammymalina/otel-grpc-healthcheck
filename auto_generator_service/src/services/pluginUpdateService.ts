@@ -10,13 +10,18 @@ export default class PluginUpdateService {
     this.client = new CodeBuildClient({});
   }
 
-  async update(version: SemanticVersion): Promise<void> {
+  async update(version: SemanticVersion, componentVersion: SemanticVersion): Promise<void> {
     const command = new StartBuildCommand({
       projectName: this.projectName,
       environmentVariablesOverride: [
         {
           name: "VERSION",
           value: version.toString(),
+          type: "PLAINTEXT",
+        },
+        {
+          name: "COMPONENT_VERSION",
+          value: componentVersion.toString(),
           type: "PLAINTEXT",
         },
       ],

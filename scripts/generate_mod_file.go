@@ -7,24 +7,27 @@ import (
 )
 
 type templateData struct {
-	OtelVersion string
-	GoVersion   string
+	OtelVersion      string
+	GoVersion        string
+	ComponentVersion string
 }
 
 func main() {
-	var otelVersion, goVersion string
+	var otelVersion, goVersion, componentVersion string
 	flag.StringVar(&otelVersion, "otelversion", "", "OpenTelemetry version")
 	flag.StringVar(&goVersion, "goversion", "1.20", "Golang version")
+	flag.StringVar(&componentVersion, "componentversion", "", "Component version")
 
 	flag.Parse()
 
-	if otelVersion == "" {
-		panic("OpenTelemetry version must be specified")
+	if otelVersion == "" || componentVersion == "" {
+		panic("OpenTelemetry and Component version must be specified")
 	}
 
 	data := templateData{
-		OtelVersion: otelVersion,
-		GoVersion:   goVersion,
+		OtelVersion:      otelVersion,
+		GoVersion:        goVersion,
+		ComponentVersion: componentVersion,
 	}
 
 	tmplFile := "go.mod.tmpl"

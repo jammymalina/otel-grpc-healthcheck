@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.43.0"
+      version = "5.90.1"
     }
   }
 
@@ -80,11 +80,12 @@ data "aws_iam_policy_document" "trigger_policy" {
 resource "aws_iam_role" "trigger_lambda" {
   name               = "${local.trigger_lambda_name}-lambda-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
+}
 
-  inline_policy {
-    name   = "default"
-    policy = data.aws_iam_policy_document.trigger_policy.json
-  }
+resource "aws_iam_role_policy" "trigger_lambda" {
+  name   = "default"
+  role   = aws_iam_role.trigger_lambda.id
+  policy = data.aws_iam_policy_document.trigger_policy.json
 }
 
 resource "aws_lambda_function" "trigger" {
@@ -97,7 +98,7 @@ resource "aws_lambda_function" "trigger" {
   source_code_hash = filebase64sha256(local.dist_trigger_lambda)
 
   filename = local.dist_trigger_lambda
-  runtime  = "nodejs20.x"
+  runtime  = "nodejs22.x"
 
   environment {
     variables = {
@@ -226,11 +227,12 @@ data "aws_iam_policy_document" "build_policy" {
 resource "aws_iam_role" "build" {
   name               = "${local.build_project_name}-build-role"
   assume_role_policy = data.aws_iam_policy_document.build_assume_role.json
+}
 
-  inline_policy {
-    name   = "default"
-    policy = data.aws_iam_policy_document.build_policy.json
-  }
+resource "aws_iam_role_policy" "build" {
+  name   = "default"
+  role   = aws_iam_role.build.id
+  policy = data.aws_iam_policy_document.build_policy.json
 }
 
 resource "aws_codebuild_project" "build" {

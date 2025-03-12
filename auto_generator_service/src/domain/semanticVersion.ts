@@ -17,7 +17,7 @@ export default class SemanticVersion {
   }
 
   toString(): string {
-    return `${this.major}.${this.minor}.${this.patch}`;
+    return `${this.major.toString()}.${this.minor.toString()}.${this.patch.toString()}`;
   }
 
   equals(otherVersion: SemanticVersion): boolean {

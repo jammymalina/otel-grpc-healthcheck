@@ -14,27 +14,29 @@ enum LambdaResponse {
 }
 
 const handler = async (): Promise<LambdaResponse> => {
-  const [otelTags, healthTags] = await Promise.all([
+  const [otelTags, healthTags, componentTags] = await Promise.all([
     githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector-contrib"),
     githubService.getRepositoryTags("jammymalina", "otel-grpc-healthcheck"),
+    githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector")
   ]);
 
-  if (otelTags.length === 0 || healthTags.length === 0) {
+  if (otelTags.length === 0 || healthTags.length === 0 || componentTags.length === 0) {
     logger.info("No repo tags for at least one of the repos, exiting");
     return LambdaResponse.NO_TAGS;
   }
 
   const [latestOtelTag] = otelTags.slice(-1);
   const [latestHealthTag] = healthTags.slice(-1);
-  logger.info("Latest tags", { details: { otelTag: latestOtelTag.version, healthTag: latestHealthTag.version } });
+  const [latestComponentTag] = componentTags.slice(-1);
+  logger.info("Latest tags", { details: { otelTag: latestOtelTag.version, healthTag: latestHealthTag.version, componentTag: latestComponentTag } });
 
   if (latestOtelTag.version.equals(latestHealthTag.version)) {
     logger.info("The latest version is already published");
     return LambdaResponse.NO_UPDATE_REQUIRED;
   }
 
-  logger.info(`Updating the version to ${latestOtelTag.version}`);
-  await pluginUpdateService.update(latestOtelTag.version);
+  logger.info(`Updating the version to ${latestOtelTag.version.toString()}`);
+  await pluginUpdateService.update(latestOtelTag.version, latestComponentTag.version);
 
   return LambdaResponse.OK;
 };

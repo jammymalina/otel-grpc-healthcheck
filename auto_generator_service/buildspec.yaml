@@ -22,5 +22,5 @@ phases:
   build:
     commands:
       - test -n "${VERSION}"
-      - ./generate_new_version.sh "${VERSION}"
+      - ./generate_new_version.sh "${VERSION}" "${COMPONENT_VERSION}"
       - echo "New version was generated and pushed to the repository"

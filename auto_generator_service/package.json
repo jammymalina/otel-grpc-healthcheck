@@ -7,7 +7,7 @@
     "prebuild": "rm -rf dist",
     "build": "esbuild src/handler.ts --bundle --external:@aws-sdk/* --minify --sourcemap --platform=node --target=es2020 --outfile=dist/handler.js",
     "postbuild": "zip -r -j dist/handler.zip dist/handler.js*",
-    "deploy": "npm run build && terraform init -reconfigure && terraform apply",
+    "deploy": "npm run build && terraform init -reconfigure -upgrade && terraform apply",
     "teardown": "npm run build && terraform init -reconfigure && terraform apply -destroy",
     "lint": "eslint --ext .ts src/"
   },
@@ -15,17 +15,15 @@
   "author": "Jakub Jantosik",
   "license": "MIT",
   "devDependencies": {
-    "@types/aws-lambda": "8.10.136",
-    "@types/node": "20.14.8",
-    "@typescript-eslint/eslint-plugin": "7.4.0",
-    "@typescript-eslint/parser": "7.4.0",
-    "esbuild": "0.20.2",
-    "eslint": "8.57.0",
-    "eslint-config-airbnb-base": "15.0.0",
-    "eslint-config-airbnb-typescript": "18.0.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "2.29.1",
-    "prettier": "3.2.5"
+    "@eslint/js": "9.22.0",
+    "@types/aws-lambda": "8.10.147",
+    "@types/node": "22.13.10",
+    "esbuild": "0.25.1",
+    "eslint": "9.22.0",
+    "eslint-config-prettier": "10.1.1",
+    "prettier": "3.5.3",
+    "typescript": "5.8.2",
+    "typescript-eslint": "8.26.1"
   },
   "prettier": {
     "printWidth": 120,
@@ -33,19 +31,9 @@
     "trailingComma": "es5",
     "semi": true
   },
-  "eslintConfig": {
-    "extends": [
-      "airbnb-base",
-      "airbnb-typescript/base",
-      "prettier"
-    ],
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "dependencies": {
-    "@aws-sdk/client-codebuild": "3.545.0",
-    "@octokit/rest": "20.0.2",
-    "winston": "3.13.0"
+    "@aws-sdk/client-codebuild": "3.758.0",
+    "@octokit/rest": "21.1.1",
+    "winston": "3.17.0"
   }
 }

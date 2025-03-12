@@ -2,9 +2,10 @@
 
 set -euxo pipefail
 
-v=$1
+version=$1
+component_version=$2
 
-./generate_go_mod.sh ${v} "1.23"
+./generate_go_mod.sh "${version}" "1.24" "${component_version}"
 
 mv go.mod go.mod.new
 mv go.sum go.sum.new
@@ -21,7 +22,7 @@ mv extension.go.new extension.go
 mv factory.go.new factory.go
 
 git add go.mod go.sum config.go extension.go factory.go
-git commit --allow-empty -m "Updated otel to version ${v}"
-git tag -a "v${v}" -m "v${v}"
+git commit --allow-empty -m "Updated otel to version ${version}"
+git tag -a "v${version}" -m "v${version}"
 git push origin HEAD
-git push origin "v${v}"
+git push origin "v${version}"
