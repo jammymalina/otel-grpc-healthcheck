@@ -27,7 +27,7 @@ export default class GithubService {
 
   async getRepositoryTags(owner: string, repo: string, prefix?: string): Promise<RepositoryVersionTag[]> {
     await this.authenticate();
-    if (this.octokit == null) {
+    if (this.octokit === null) {
       logger.warning("Unable to authenticate, continuing with unauthenticated client");
       this.octokit = new Octokit();
     }
@@ -40,7 +40,6 @@ export default class GithubService {
 
     while (listedTags.length < 5 && pageIndex < 100) {
       const response = await this.octokit.rest.repos.listTags({ owner, repo, per_page: 100, page: pageIndex });
-      logger.info("Received response from list tags octo API", { details: { response } });
 
       const allowedStatusCodes = [200, 204];
 

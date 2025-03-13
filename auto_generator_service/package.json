@@ -32,7 +32,7 @@
     "semi": true
   },
   "dependencies": {
-    "@aws-sdk/client-codebuild": "3.758.0",
+    "@aws-sdk/client-codebuild": "3.767.0",
     "@aws-sdk/client-ssm": "^3.759.0",
     "@octokit/rest": "21.1.1",
     "winston": "3.17.0"
