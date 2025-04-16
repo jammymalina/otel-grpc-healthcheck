@@ -12,23 +12,23 @@ dist:
   name: otel-collector-custom
   description: Custom collector
   output_path: ./bin
-  otelcol_version: 0.124.0
+  otelcol_version: 0.124.1
 
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.124.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.124.1
 
 extensions:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.124.0 # Required
-  - gomod: github.com/jammymalina/otel-grpc-healthcheck v0.124.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.124.1 # Required
+  - gomod: github.com/jammymalina/otel-grpc-healthcheck v0.124.1
     import: github.com/jammymalina/otel-grpc-healthcheck
     name: grpc_health_check
 
 processors:
-  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.124.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.124.0
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.124.1
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.124.1
 
 receivers:
-  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.124.0
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.124.1
 
 providers:
   - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.30.0
