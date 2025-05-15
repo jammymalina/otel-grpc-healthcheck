@@ -12,7 +12,7 @@ importers:
         specifier: 3.811.0
         version: 3.811.0
       '@aws-sdk/client-ssm':
-        specifier: ^3.810.0
+        specifier: 3.810.0
         version: 3.810.0
       '@octokit/rest':
         specifier: 21.1.1
