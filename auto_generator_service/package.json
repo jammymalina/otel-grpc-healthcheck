@@ -17,7 +17,7 @@
   "devDependencies": {
     "@eslint/js": "9.27.0",
     "@types/aws-lambda": "8.10.149",
-    "@types/node": "22.15.21",
+    "@types/node": "22.15.22",
     "esbuild": "0.25.5",
     "eslint": "9.27.0",
     "eslint-config-prettier": "10.1.5",
