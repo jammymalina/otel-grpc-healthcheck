@@ -77,7 +77,7 @@ extensions:
   grpc_health_check:
     grpc:
       endpoint: "0.0.0.0:13134"
-    health_check_http_endpoint: "localhost:13133"
+    health_check_http_endpoint: "http://localhost:13133"
 
 service:
   extensions: [health_check, grpc_health_check]
