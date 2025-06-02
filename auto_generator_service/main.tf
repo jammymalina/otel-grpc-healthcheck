@@ -98,7 +98,8 @@ resource "aws_lambda_function" "trigger" {
   role          = aws_iam_role.trigger_lambda.arn
   handler       = "handler.default"
 
-  timeout = 30
+  timeout     = 30
+  memory_size = 256
 
   source_code_hash = filebase64sha256(local.dist_trigger_lambda)
 
