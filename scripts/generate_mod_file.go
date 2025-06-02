@@ -33,7 +33,7 @@ func generateFileFromTemplate(tmplFile, targetFile string, data templateData) {
 func main() {
 	var otelVersion, goVersion, componentVersion string
 	flag.StringVar(&otelVersion, "otelversion", "", "OpenTelemetry version")
-	flag.StringVar(&goVersion, "goversion", "1.20", "Golang version")
+	flag.StringVar(&goVersion, "goversion", "1.24", "Golang version")
 	flag.StringVar(&componentVersion, "componentversion", "", "Component version")
 
 	flag.Parse()
