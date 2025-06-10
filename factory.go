@@ -16,10 +16,10 @@ var (
 )
 
 const (
-	defaultEndpoint               = "0.0.0.0:13134"
-	defaultHealtcheckHttpEndpoint = "http://localhost:13133"
-	defaultStartPeriod            = 30 * time.Second
-	defaultInterval               = 5 * time.Second
+	defaultEndpoint                = "0.0.0.0:13134"
+	defaultHealthcheckHttpEndpoint = "http://localhost:13133"
+	defaultStartPeriod             = 30 * time.Second
+	defaultInterval                = 5 * time.Second
 )
 
 func NewFactory() extension.Factory {
@@ -37,7 +37,7 @@ func createDefaultConfig() component.Config {
 			Endpoint:  defaultEndpoint,
 			Transport: "tcp",
 		}},
-		HealthCheckHttpEndpoint: defaultHealtcheckHttpEndpoint,
+		HealthCheckHttpEndpoint: defaultHealthcheckHttpEndpoint,
 		StartPeriod:             defaultStartPeriod,
 		Interval:                defaultInterval,
 	}
