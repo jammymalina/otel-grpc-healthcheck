@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.90.1"
+      version = "6.0.0"
     }
   }
 
@@ -33,7 +33,7 @@ locals {
   service_name = "otel-package-updater"
 
   account_id    = data.aws_caller_identity.current.account_id
-  region        = data.aws_region.current.name
+  region        = data.aws_region.current.region
   aws_partition = data.aws_partition.current.partition
 
   log_retention_days = 7
