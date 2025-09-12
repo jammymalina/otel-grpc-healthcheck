@@ -26,8 +26,8 @@
     "typescript-eslint": "8.43.0"
   },
   "dependencies": {
-    "@aws-sdk/client-codebuild": "3.883.0",
-    "@aws-sdk/client-ssm": "3.883.0",
+    "@aws-sdk/client-codebuild": "3.888.0",
+    "@aws-sdk/client-ssm": "3.888.0",
     "@octokit/rest": "22.0.0",
     "winston": "3.17.0"
   },
@@ -37,5 +37,5 @@
     "trailingComma": "es5",
     "semi": true
   },
-  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+  "packageManager": "pnpm@10.16.0+sha512.8066e7b034217b700a9a4dbb3a005061d641ba130a89915213a10b3ca4919c19c037bec8066afdc559b89635fdb806b16ea673f2468fbb28aabfa13c53e3f769"
 }
