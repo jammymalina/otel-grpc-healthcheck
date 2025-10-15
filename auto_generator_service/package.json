@@ -15,21 +15,21 @@
   "author": "Jakub Jantosik",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/js": "9.35.0",
-    "@types/aws-lambda": "8.10.152",
-    "@types/node": "24.3.1",
-    "esbuild": "0.25.9",
-    "eslint": "9.35.0",
+    "@eslint/js": "9.37.0",
+    "@types/aws-lambda": "8.10.156",
+    "@types/node": "24.7.2",
+    "esbuild": "0.25.11",
+    "eslint": "9.37.0",
     "eslint-config-prettier": "10.1.8",
     "prettier": "3.6.2",
-    "typescript": "5.9.2",
-    "typescript-eslint": "8.43.0"
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.1"
   },
   "dependencies": {
-    "@aws-sdk/client-codebuild": "3.888.0",
-    "@aws-sdk/client-ssm": "3.888.0",
+    "@aws-sdk/client-codebuild": "3.911.0",
+    "@aws-sdk/client-ssm": "3.911.0",
     "@octokit/rest": "22.0.0",
-    "winston": "3.17.0"
+    "winston": "3.18.3"
   },
   "prettier": {
     "printWidth": 120,
@@ -37,5 +37,5 @@
     "trailingComma": "es5",
     "semi": true
   },
-  "packageManager": "pnpm@10.16.0+sha512.8066e7b034217b700a9a4dbb3a005061d641ba130a89915213a10b3ca4919c19c037bec8066afdc559b89635fdb806b16ea673f2468fbb28aabfa13c53e3f769"
+  "packageManager": "pnpm@10.18.3+sha512.bbd16e6d7286fd7e01f6b3c0b3c932cda2965c06a908328f74663f10a9aea51f1129eea615134bf992831b009eabe167ecb7008b597f40ff9bc75946aadfb08d"
 }
