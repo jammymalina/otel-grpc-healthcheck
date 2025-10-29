@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "6.16.0"
+      version = "6.18.0"
     }
   }
 
@@ -170,12 +170,13 @@ resource "terraform_data" "build" {
   provisioner "local-exec" {
     working_dir = path.root
     interpreter = ["/bin/bash", "-ce"]
-    command     = <<-EOT
+    environment = {
+      REPOSITORY = aws_ecr_repository.build.repository_url
+      TAG        = local.build_tag
+    }
+    command = <<-EOT
       aws ecr get-login-password --region ${local.region} | docker login --username AWS --password-stdin ${local.ecr_repository_url}
-      docker build \
-	--file Dockerfile \
-	--platform linux/amd64 \
-	--output type=image,name=${aws_ecr_repository.build.repository_url}:${local.build_tag},push=true .
+      docker buildx bake --push
     EOT
   }
 }
