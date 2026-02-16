@@ -5,7 +5,7 @@ set -euxo pipefail
 version=$1
 component_version=$2
 
-./generate_go_mod.sh "${version}" "1.26" "${component_version}"
+./generate_go_mod.sh "${version}" "1.25" "${component_version}"
 
 mv go.mod go.mod.new
 mv go.sum go.sum.new
