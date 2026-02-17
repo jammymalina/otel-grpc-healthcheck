@@ -23,7 +23,7 @@ func getGoVersion(goModPath string) (string, error) {
 		return "", fmt.Errorf("failed to read %s: %w", goModPath, err)
 	}
 
-	f, err := modfile.Parse("go.mod", data, nil)
+	f, err := modfile.Parse(goModPath, data, nil)
 	if err != nil {
 		return "", fmt.Errorf("failed to parse go.mod: %w", err)
 	}
