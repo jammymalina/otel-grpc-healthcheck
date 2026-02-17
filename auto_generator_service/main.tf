@@ -96,7 +96,7 @@ resource "aws_iam_role_policy" "trigger_lambda" {
 resource "aws_lambda_function" "trigger" {
   function_name = local.trigger_lambda_name
   role          = aws_iam_role.trigger_lambda.arn
-  handler       = "handler.default"
+  handler       = "index.handler"
 
   timeout     = 30
   memory_size = 256

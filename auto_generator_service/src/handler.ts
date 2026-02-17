@@ -13,11 +13,11 @@ enum LambdaResponse {
   NO_TAGS = "NO_TAGS",
 }
 
-const handler = async (): Promise<LambdaResponse> => {
+export const handler = async (): Promise<LambdaResponse> => {
   const [otelTags, healthTags, componentTags] = await Promise.all([
     githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector-contrib"),
     githubService.getRepositoryTags("jammymalina", "otel-grpc-healthcheck"),
-    githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector", "component/")
+    githubService.getRepositoryTags("open-telemetry", "opentelemetry-collector", "component/"),
   ]);
 
   if (otelTags.length === 0 || healthTags.length === 0 || componentTags.length === 0) {
@@ -28,7 +28,9 @@ const handler = async (): Promise<LambdaResponse> => {
   const [latestOtelTag] = otelTags.slice(-1);
   const [latestHealthTag] = healthTags.slice(-1);
   const [latestComponentTag] = componentTags.slice(-1);
-  logger.info("Latest tags", { details: { otelTag: latestOtelTag.version, healthTag: latestHealthTag.version, componentTag: latestComponentTag } });
+  logger.info("Latest tags", {
+    details: { otelTag: latestOtelTag.version, healthTag: latestHealthTag.version, componentTag: latestComponentTag },
+  });
 
   if (latestOtelTag.version.equals(latestHealthTag.version)) {
     logger.info("The latest version is already published");
@@ -40,5 +42,3 @@ const handler = async (): Promise<LambdaResponse> => {
 
   return LambdaResponse.OK;
 };
-
-export default handler;

@@ -5,8 +5,8 @@
   "main": "handler.ts",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "esbuild src/handler.ts --bundle --external:@aws-sdk/* --minify --sourcemap --platform=node --target=es2024 --outfile=dist/handler.js",
-    "postbuild": "zip -r -j dist/handler.zip dist/handler.js*",
+    "build": "esbuild src/handler.ts --bundle --external:@aws-sdk/* --minify --sourcemap --platform=node --target=es2024 --outfile=dist/index.js",
+    "postbuild": "zip -r -j dist/handler.zip dist/index.js*",
     "deploy": "npm run build && terraform init -reconfigure -upgrade && terraform apply",
     "teardown": "npm run build && terraform init -reconfigure && terraform apply -destroy",
     "lint": "eslint --ext .ts src/"
