@@ -1,19 +1,19 @@
 import { Octokit } from "@octokit/rest";
 
-import logger from "../utils/logger";
 import RepositoryVersionTag from "../domain/repositoryVersionTag";
 import SemanticVersion from "../domain/semanticVersion";
+import logger from "../utils/logger";
 import SecretService from "./secretService";
 
 interface Tag {
   name: string;
-    commit: {
-        sha: string;
-        url: string;
-    };
-    zipball_url: string;
-    tarball_url: string;
-    node_id: string;
+  commit: {
+    sha: string;
+    url: string;
+  };
+  zipball_url: string;
+  tarball_url: string;
+  node_id: string;
 }
 
 export default class GithubService {
@@ -32,11 +32,14 @@ export default class GithubService {
       this.octokit = new Octokit();
     }
 
-    const listedTags = []
+    const listedTags = [];
     let pageIndex = 1;
 
     const prefixFilter = typeof prefix === "undefined" ? () => true : (tag: Tag) => tag.name.startsWith(prefix);
-    const extractVersion = typeof prefix === "undefined" ? (tagName: string) => tagName : (tagName: string) => tagName.substring(prefix.length, tagName.length);
+    const extractVersion =
+      typeof prefix === "undefined"
+        ? (tagName: string) => tagName
+        : (tagName: string) => tagName.substring(prefix.length, tagName.length);
 
     while (listedTags.length < 5 && pageIndex < 100) {
       const response = await this.octokit.rest.repos.listTags({ owner, repo, per_page: 100, page: pageIndex });
@@ -48,7 +51,7 @@ export default class GithubService {
       }
 
       const items = Array.isArray(response.data) ? response.data : [];
-      listedTags.push(...items.filter(prefixFilter))
+      listedTags.push(...items.filter(prefixFilter));
 
       pageIndex += 1;
     }
