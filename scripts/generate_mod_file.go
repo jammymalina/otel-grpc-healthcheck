@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path"
 	"text/template"
 
 	"golang.org/x/mod/modfile"
@@ -16,6 +17,8 @@ type templateData struct {
 	GoVersion        string
 	ComponentVersion string
 }
+
+const rootDir = ".."
 
 func getGoVersion(goModPath string) (string, error) {
 	data, err := os.ReadFile(goModPath)
@@ -35,12 +38,12 @@ func getGoVersion(goModPath string) (string, error) {
 }
 
 func generateFileFromTemplate(tmplFile, targetFile string, data templateData) error {
-	tmpl, err := template.New(tmplFile).ParseFiles(tmplFile)
+	tmpl, err := template.New(tmplFile).ParseFiles(path.Join(rootDir, tmplFile))
 	if err != nil {
 		return fmt.Errorf("failed to parse template %s: %w", tmplFile, err)
 	}
 
-	tf, err := os.Create(targetFile)
+	tf, err := os.Create(path.Join(rootDir, targetFile))
 	if err != nil {
 		return fmt.Errorf("failed to create file %s: %w", targetFile, err)
 	}
