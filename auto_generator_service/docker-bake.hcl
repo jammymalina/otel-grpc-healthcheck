@@ -6,7 +6,7 @@ target "default" {
     context = "."
     dockerfile = "Dockerfile"
     args = {
-        GO_VERSION = "1.26.0"
+        GO_VERSION = "1.26.1"
         ALPINE_VERSION = "3.23"
     }
     platforms = ["linux/amd64"]
