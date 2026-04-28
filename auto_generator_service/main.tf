@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "6.36.0"
+      version = "6.42.0"
     }
   }
 
@@ -165,7 +165,10 @@ resource "aws_ecr_lifecycle_policy" "build" {
 }
 
 resource "terraform_data" "build" {
-  triggers_replace = [filesha256("${path.root}/Dockerfile")]
+  triggers_replace = [
+    filesha256("${path.root}/Dockerfile"),
+    filesha256("${path.root}/docker-bake.hcl"),
+  ]
 
   provisioner "local-exec" {
     working_dir = path.root
