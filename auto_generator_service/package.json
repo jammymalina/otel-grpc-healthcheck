@@ -17,17 +17,17 @@
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@types/aws-lambda": "8.10.161",
-    "@types/node": "25.6.0",
+    "@types/node": "25.9.1",
     "esbuild": "0.28.0",
-    "eslint": "10.2.1",
+    "eslint": "10.4.0",
     "eslint-config-prettier": "10.1.8",
     "prettier": "3.8.3",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.59.1"
+    "typescript-eslint": "8.59.4"
   },
   "dependencies": {
-    "@aws-sdk/client-codebuild": "3.1038.0",
-    "@aws-sdk/client-ssm": "3.1038.0",
+    "@aws-sdk/client-codebuild": "3.1053.0",
+    "@aws-sdk/client-ssm": "3.1053.0",
     "@octokit/rest": "22.0.1",
     "winston": "3.19.0"
   },
@@ -37,5 +37,5 @@
     "trailingComma": "es5",
     "semi": true
   },
-  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
+  "packageManager": "pnpm@11.2.2+sha512.36e6621fad506178936455e70247b8808ef4ec25797a9f437a93281a020484e2607f6a469a22e982987c3dbb8866e3071514ab10a4a1749e06edcd1ec118436f"
 }

@@ -1,2 +1,7 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - '@aws-sdk/client-codebuild@3.1053.0'
+  - '@aws-sdk/client-ssm@3.1053.0'
 onlyBuiltDependencies:
   - esbuild
