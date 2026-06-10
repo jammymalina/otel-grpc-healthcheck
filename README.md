@@ -12,30 +12,30 @@ dist:
   name: otel-collector-custom
   description: Custom collector
   output_path: ./bin
-  otelcol_version: 0.153.0
+  otelcol_version: 0.154.0
 
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.153.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.154.0
 
 extensions:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.153.0 # Required
-  - gomod: github.com/jammymalina/otel-grpc-healthcheck v0.153.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.154.0 # Required
+  - gomod: github.com/jammymalina/otel-grpc-healthcheck v0.154.0
     import: github.com/jammymalina/otel-grpc-healthcheck
     name: grpc_health_check
 
 processors:
-  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.153.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.153.0
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.154.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.154.0
 
 receivers:
-  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.153.0
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.154.0
 
 providers:
-  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.59.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.59.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.59.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.59.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.59.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.60.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.60.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.60.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.60.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.60.0
 ```
 
 ## The OpenTelemetry Collector Configuration
