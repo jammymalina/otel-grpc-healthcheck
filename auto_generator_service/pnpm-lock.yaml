@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@aws-sdk/client-codebuild':
-        specifier: 3.1131.0
-        version: 3.1131.0
+        specifier: 3.1133.0
+        version: 3.1133.0
       '@aws-sdk/client-ssm':
         specifier: 3.1133.0
         version: 3.1133.0
@@ -186,8 +186,8 @@ importers:
         specifier: 8.10.163
         version: 8.10.163
       '@types/node':
-        specifier: 26.5.1
-        version: 26.5.1
+        specifier: 26.6.0
+        version: 26.6.0
       esbuild:
         specifier: 0.28.2
         version: 0.28.2
@@ -209,8 +209,8 @@ importers:
 
 packages:
 
-  '@aws-sdk/client-codebuild@3.1131.0':
-    resolution: {integrity: sha512-vEOuSqc37A6kEO5OPSylnzHJPws+wzsD8HuM+YufadAKQfHMDxdZdQ2yAjHzzviqKuE8ZvKfwL3gWY/27Jssnw==}
+  '@aws-sdk/client-codebuild@3.1133.0':
+    resolution: {integrity: sha512-hwLNMcYRStXpPfTe4ykwZjf/uxhlZLJpOzenK+4cOCV6hGGEW/2Ujr7cIgXnK9H1Ek0QiR8eHSXDc2J2Zcg5Rw==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/client-ssm@3.1133.0':
@@ -615,8 +615,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@26.5.1':
-    resolution: {integrity: sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g==}
+  '@types/node@26.6.0':
+    resolution: {integrity: sha512-FWWQhDlKSnEJVe+CTJCQL8Fol7s1MKo3Ud0fjryxoOoH+hwMIPxol0MguYrLi2I0VvIFwOU2DwdWET2+px15qg==}
 
   '@types/triple-beam@1.3.5':
     resolution: {integrity: sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==}
@@ -1192,7 +1192,7 @@ packages:
 
 snapshots:
 
-  '@aws-sdk/client-codebuild@3.1131.0':
+  '@aws-sdk/client-codebuild@3.1133.0':
     dependencies:
       '@aws-sdk/core': 3.978.0
       '@aws-sdk/credential-provider-node': 3.972.83
@@ -1621,7 +1621,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@26.5.1':
+  '@types/node@26.6.0':
     dependencies:
       undici-types: 8.9.0
 

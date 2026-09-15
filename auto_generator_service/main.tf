@@ -104,7 +104,7 @@ resource "aws_lambda_function" "trigger" {
   source_code_hash = filebase64sha256(local.dist_trigger_lambda)
 
   filename = local.dist_trigger_lambda
-  runtime  = "nodejs24.x"
+  runtime  = "nodejs26.x"
 
   environment {
     variables = {
